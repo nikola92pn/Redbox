@@ -11,5 +11,11 @@
 /Redbox.Infrastructure.Persistance/bin/Debug/netcoreapp3.1
 /Redbox.Infrastructure.Persistance/obj
 /Redbox.Infrastructure.Persistance/Context/RedboxDbContext.cs
-/Redbox/.vs/Redbox/v16
 /Redbox/.vs/Redbox
+/.vs/Redbox/v16/Server/sqlite3
+/Redbox.WebApi/.vs/Redbox/v16/Server/sqlite3
+/Redbox.WebApi/.vs/Redbox/v16
+/Redbox.WebApi/bin/Debug/netcoreapp3.1/runtimes
+/Redbox.WebApi/bin/Debug/netcoreapp3.1
+/Redbox.WebApi/obj
+/.vs/Redbox/v16

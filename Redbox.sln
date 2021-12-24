@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox", "Redbox.csproj", "{838600A1-3BB4-4FF7-AB4C-02C8316C761E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.WebApi", ".\Redbox.WebApi\Redbox.WebApi.csproj", "{838600A1-3BB4-4FF7-AB4C-02C8316C761E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.Core", "..\Redbox.Core\Redbox.Core.csproj", "{F2A5BDA8-950E-4452-B628-A6541CC45F8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.Core", ".\Redbox.Core\Redbox.Core.csproj", "{F2A5BDA8-950E-4452-B628-A6541CC45F8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.Infrastructure.Persistance", "..\Redbox.Infrastructure.Persistance\Redbox.Infrastructure.Persistance.csproj", "{6CC66F30-F572-4683-9ACD-CAF9E74C077F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.Infrastructure.Persistance", ".\Redbox.Infrastructure.Persistance\Redbox.Infrastructure.Persistance.csproj", "{6CC66F30-F572-4683-9ACD-CAF9E74C077F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.Infrastructure.Mediator", "..\Redbox.Infrastructure.Mediator\Redbox.Infrastructure.Mediator.csproj", "{270BDC38-4745-4EA6-A247-A42D8B267812}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.Infrastructure.Mediator", ".\Redbox.Infrastructure.Mediator\Redbox.Infrastructure.Mediator.csproj", "{270BDC38-4745-4EA6-A247-A42D8B267812}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
