@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Redbox/bin/Debug/netcoreapp3.1
+/Redbox/obj
+/Redbox.Core/bin/Debug/netcoreapp3.1
+/Redbox.Core/obj
+/Redbox.Infrastructure.Mediator/bin/Debug/netcoreapp3.1
+/Redbox.Infrastructure.Mediator/obj
+/Redbox.Infrastructure.Persistance/bin/Debug/netcoreapp3.1
+/Redbox.Infrastructure.Persistance/obj
+/Redbox.Infrastructure.Persistance/Context/RedboxDbContext.cs
+/Redbox/.vs/Redbox/v16
+/Redbox/.vs/Redbox
