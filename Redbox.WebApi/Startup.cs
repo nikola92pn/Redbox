@@ -3,12 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Redbox.Core.Entities;
-using Redbox.Core.Repositories;
 using Redbox.Infrastructure.Mediator.Extensions;
-using Redbox.Infrastructure.Persistance.Context;
 using Redbox.Infrastructure.Persistance.Extensions;
-using Redbox.Infrastructure.Persistance.Repositories;
 using Redbox.Infrastructure.Services.Extensions;
 using Redbox.WebApi.Middlewares;
 

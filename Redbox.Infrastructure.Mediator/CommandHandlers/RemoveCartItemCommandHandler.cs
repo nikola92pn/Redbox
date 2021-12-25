@@ -23,13 +23,13 @@ namespace Redbox.Infrastructure.Mediator.CommandHandlers
 
         public async Task<bool> Handle(RemoveCartItemCommandModel request, CancellationToken cancellationToken)
         {
-            bool result = false;
             CartItem cartItem = await _cartItemRepository.GetById(request.CartId, request.ItemId);
             if (cartItem == null)
             {
                 throw new ValidationException("No cart items found.");
             }
 
+            bool result;
             if (cartItem.Quantity == 1)
             {
                 result = await _cartItemRepository.Delete(cartItem.CartId, cartItem.ItemId);
