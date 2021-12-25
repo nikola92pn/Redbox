@@ -36,6 +36,8 @@ namespace Redbox.Controllers
         [HttpGet("{cartId}")]
         public async Task<IActionResult> GetById(int cartId)
         {
+            if (cartId < 0) return BadRequest();
+
             Cart cart = await _mediator.Send(new GetCartByIdQuery() { Id = cartId });
             return Ok(_mapper.Map<CartVM>(cart));
         }
@@ -50,6 +52,8 @@ namespace Redbox.Controllers
         [HttpGet("{cartId}/items")]
         public async Task<IActionResult> GetCartItems(int cartId)
         {
+            if (cartId < 0) return BadRequest();
+
             ICollection<CartItem> cartItems = await _mediator.Send(new GetCartItemsQuery() { CartId = cartId });
             return Ok(_mapper.Map<ICollection<CartItemVM>>(cartItems));
         }
@@ -57,10 +61,7 @@ namespace Redbox.Controllers
         [HttpPost("{cartId}/items/{itemId}")]
         public async Task<IActionResult> AddCartItem(int cartId, int itemId)
         {
-            if (itemId < 0)
-            {
-                return BadRequest();
-            }
+            if (itemId < 0 || cartId < 0) return BadRequest();
 
             CartItem cartItem = await _mediator.Send(new AddCartItemCommandModel() { CartId = cartId, ItemId = itemId });
             CartItemVM cartItemVM = _mapper.Map<CartItemVM>(cartItem);
@@ -70,10 +71,7 @@ namespace Redbox.Controllers
         [HttpDelete("{cartId}/items/{itemId}")]
         public async Task<IActionResult> RemoveCartItem(int cartId, int itemId)
         {
-            if (itemId < 0)
-            {
-                return BadRequest();
-            }
+            if (itemId < 0 || cartId < 0) return BadRequest();
 
             bool result = await _mediator.Send(new RemoveCartItemCommandModel() { CartId = cartId, ItemId = itemId });
             return Ok(result);
@@ -83,6 +81,8 @@ namespace Redbox.Controllers
         [HttpGet("{cartId}/price")]
         public async Task<IActionResult> GetPrice(int cartId, string code)
         {
+            if (cartId < 0) return BadRequest();
+
             double cartPrice = await _mediator.Send(new GetCartPriceQuery() { CartId = cartId, DiscountCode = code });
             return Ok(cartPrice);
         }
