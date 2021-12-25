@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Redbox.ViewModels
+﻿namespace Redbox.ViewModels
 {
     public class CartItemVM
     {

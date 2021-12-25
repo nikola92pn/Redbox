@@ -1,0 +1,320 @@
+{
+	"info": {
+		"_postman_id": "a44ba5b0-a292-495e-9401-7a1f2e6c6163",
+		"name": "Redbox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check cart id value\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.greaterThan(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44322/api/carts",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Item to Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check cart id value\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.cartId).to.eq(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check item id value\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.itemId).to.eq(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check item id value\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.quantity).to.greaterThan(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44322/api/carts/1/items/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"carts",
+						"1",
+						"items",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart Info Price",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Price response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.greaterThan(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44322/api/carts/1/price",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"carts",
+						"1",
+						"price"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart Price with Discount / Checkout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Price response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.greaterThan(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44322/api/carts/1/price?code=discount15",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"carts",
+						"1",
+						"price"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "discount15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Carts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44322/api/carts",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check data of the first item\", function () {\r",
+							"    var jsonData = pm.response.json()[0];\r",
+							"    pm.expect(jsonData.name).to.eql(\"item1\");\r",
+							"    pm.expect(jsonData.id).to.eql(1);\r",
+							"    pm.expect(jsonData.basePrice).to.eql(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44322/api/items",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Cart Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44322/api/carts/1/items",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"carts",
+						"1",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Item from Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status codes\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 422])    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44322/api/carts/1/items/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44322",
+					"path": [
+						"api",
+						"carts",
+						"1",
+						"items",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

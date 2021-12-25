@@ -1,54 +1,51 @@
 ﻿using MediatR;
 using Redbox.Core.Entities;
 using Redbox.Core.Repositories;
+using Redbox.Core.Services;
 using Redbox.Infrastructure.Mediator.CommandRequests;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Redbox.Infrastructure.Mediator.CommandHandlers
 {
-    public class RemoveCartItemCommandHandler : IRequestHandler<RemoveCartItemCommandModel, CartItem>
+    public class RemoveCartItemCommandHandler : IRequestHandler<RemoveCartItemCommandModel, bool>
     {
         private readonly IRepository<CartItem> _cartItemRepository;
-        private readonly IRepository<Item> _itemRepository;
-        private readonly IRepository<Cart> _cartRepository;
+        private readonly IPriceService _priceService;
 
-        public RemoveCartItemCommandHandler(IRepository<CartItem> cartItemRepository, IRepository<Item> itemRepository, IRepository<Cart> cartRepository)
+
+        public RemoveCartItemCommandHandler(IRepository<CartItem> cartItemRepository, IPriceService priceService)
         {
             _cartItemRepository = cartItemRepository;
-            _itemRepository = itemRepository;
-            _cartRepository = cartRepository;
+            _priceService = priceService;
         }
 
-        public async Task<CartItem> Handle(RemoveCartItemCommandModel request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(RemoveCartItemCommandModel request, CancellationToken cancellationToken)
         {
-            Item item = await _itemRepository.GetById(request.ItemId);
-            Cart cart = await _cartRepository.GetById(request.CartId);
-
-            // TODO: Izvrsiti proveru da li postoje objekti
-
-
+            bool result = false;
             CartItem cartItem = await _cartItemRepository.GetById(request.CartId, request.ItemId);
             if (cartItem == null)
             {
-                // TODO: validacija
+                throw new ValidationException("No cart items found.");
+            }
+
+            if (cartItem.Quantity == 1)
+            {
+                result = await _cartItemRepository.Delete(cartItem.CartId, cartItem.ItemId);
             }
             else
             {
-                if (cartItem.Quantity == 1)
-                {
-                    await _cartItemRepository.Delete(cartItem.CartId, cartItem.ItemId);
-                }
-                else
-                {                    
-                    bool isThirdItem = cartItem.Quantity % 3 == 0;
-                    cartItem.Price -= isThirdItem ? item.BasePrice / 2 : item.BasePrice;
-                    cartItem.Quantity -= 1;
-                    await _cartItemRepository.Update(cartItem);
-                }
+                double itemBasePrice = cartItem.Item.BasePrice;
+                double cartItemPrice = _priceService.GetItemPriceByQty(itemBasePrice, cartItem.Quantity);
+
+                cartItem.Price -= cartItemPrice;
+                cartItem.Quantity -= 1;
+
+                result = await _cartItemRepository.Update(cartItem) != null;
             }
 
-            return cartItem;
+            return result;
         }
     }
 }

@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Redbox.Core.Database;
 using Redbox.Core.Entities;
 using Redbox.Infrastructure.Persistance.Context;
 using System;
 
-namespace Redbox.Infrastructure.Persistance.DataGenerator
+namespace Redbox.Infrastructure.Persistance.DataGenerators
 {
-    public class DataGenerator
+    public class DataGenerator : IDataGenerator
     {
-        public static void Initialize(IServiceProvider serviceProvider)
+        public void Initialize(IServiceProvider serviceProvider)
         {
             using (var context = new RedboxDbContext(serviceProvider.GetRequiredService<DbContextOptions<RedboxDbContext>>()))
             {

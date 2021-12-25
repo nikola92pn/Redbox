@@ -2,7 +2,6 @@
 using Redbox.Core.Entities;
 using Redbox.Core.Repositories;
 using Redbox.Infrastructure.Mediator.CommandRequests;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 

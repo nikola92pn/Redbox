@@ -45,9 +45,6 @@ namespace Redbox.Infrastructure.Persistance.Context
             modelBuilder.Entity<ItemDiscount>(e =>
             {
                 e.HasKey(id => new { id.ItemId, id.DiscountCode });
-
-                e.Navigation(id => id.Item).AutoInclude();
-                e.Navigation(id => id.Discount).AutoInclude();
             });
 
             modelBuilder.Entity<Cart>(e =>

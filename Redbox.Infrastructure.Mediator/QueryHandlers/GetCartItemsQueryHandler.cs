@@ -1,31 +1,28 @@
 ﻿using MediatR;
 using Redbox.Core.Entities;
 using Redbox.Core.Repositories;
-using Redbox.Core.Services;
 using Redbox.Infrastructure.Mediator.Queries;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Redbox.Infrastructure.Mediator.QueryHandlers
 {
-    public class GetCartPriceQueryHandler : IRequestHandler<GetCartPriceQuery, double>
+    public class GetCartItemsQueryHandler : IRequestHandler<GetCartItemsQuery, ICollection<CartItem>>
     {
         private readonly IRepository<Cart> _cartRepository;
-        private readonly IPriceService _priceService;
 
-        public GetCartPriceQueryHandler(IRepository<Cart> cartRepository, IPriceService priceService)
+        public GetCartItemsQueryHandler(IRepository<Cart> cartRepository)
         {
             _cartRepository = cartRepository;
-            _priceService = priceService;
         }
-        public async Task<double> Handle(GetCartPriceQuery request, CancellationToken cancellationToken)
+        public async Task<ICollection<CartItem>> Handle(GetCartItemsQuery request, CancellationToken cancellationToken)
         {
             Cart cart = await _cartRepository.GetById(request.CartId);
             if (cart == null) throw new ValidationException("The cart was not found.");
 
-            double cartPrice = _priceService.CalculatePrice(request.DiscountCode, cart);
-            return cartPrice;
-        }        
+            return cart.CartItems;
+        }
     }
 }

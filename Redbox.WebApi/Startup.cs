@@ -9,6 +9,8 @@ using Redbox.Infrastructure.Mediator.Extensions;
 using Redbox.Infrastructure.Persistance.Context;
 using Redbox.Infrastructure.Persistance.Extensions;
 using Redbox.Infrastructure.Persistance.Repositories;
+using Redbox.Infrastructure.Services.Extensions;
+using Redbox.WebApi.Middlewares;
 
 namespace Redbox
 {
@@ -26,10 +28,13 @@ namespace Redbox
         {
             services.AddControllers();
 
+            services.AddTransient<ExceptionHandlingMiddleware>();
             services.AddMediator();
+            
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddPersistanceServices();
+            services.AddPersistance();
+            services.AddServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,11 +45,15 @@ namespace Redbox
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+            
 
             app.UseEndpoints(endpoints =>
             {

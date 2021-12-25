@@ -19,3 +19,6 @@
 /Redbox.WebApi/bin/Debug/netcoreapp3.1
 /Redbox.WebApi/obj
 /.vs/Redbox/v16
+/Redbox.Infrastructure.Services/bin/Debug/netcoreapp3.1
+/Redbox.Infrastructure.Services/obj
+/Redbox.WebApi/redbox.db

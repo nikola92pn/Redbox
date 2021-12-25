@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Redbox.Core.Database;
 using Redbox.Infrastructure.Persistance.Context;
-using Redbox.Infrastructure.Persistance.DataGenerator;
 
 namespace Redbox
 {
@@ -16,9 +16,10 @@ namespace Redbox
             {
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<RedboxDbContext>();
+                var dataGenerator = services.GetRequiredService<IDataGenerator>();
                 if (context.Database.EnsureCreated())
                 {
-                    DataGenerator.Initialize(services);
+                    dataGenerator.Initialize(services);
                 }                
             }
 

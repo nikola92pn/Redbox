@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.WebApi", ".\Redbox.WebApi\Redbox.WebApi.csproj", "{838600A1-3BB4-4FF7-AB4C-02C8316C761E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.WebApi", "Redbox.WebApi\Redbox.WebApi.csproj", "{838600A1-3BB4-4FF7-AB4C-02C8316C761E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.Core", ".\Redbox.Core\Redbox.Core.csproj", "{F2A5BDA8-950E-4452-B628-A6541CC45F8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.Core", "Redbox.Core\Redbox.Core.csproj", "{F2A5BDA8-950E-4452-B628-A6541CC45F8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.Infrastructure.Persistance", ".\Redbox.Infrastructure.Persistance\Redbox.Infrastructure.Persistance.csproj", "{6CC66F30-F572-4683-9ACD-CAF9E74C077F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.Infrastructure.Persistance", "Redbox.Infrastructure.Persistance\Redbox.Infrastructure.Persistance.csproj", "{6CC66F30-F572-4683-9ACD-CAF9E74C077F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.Infrastructure.Mediator", ".\Redbox.Infrastructure.Mediator\Redbox.Infrastructure.Mediator.csproj", "{270BDC38-4745-4EA6-A247-A42D8B267812}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redbox.Infrastructure.Mediator", "Redbox.Infrastructure.Mediator\Redbox.Infrastructure.Mediator.csproj", "{270BDC38-4745-4EA6-A247-A42D8B267812}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redbox.Infrastructure.Services", "Redbox.Infrastructure.Services\Redbox.Infrastructure.Services.csproj", "{A84B693C-29B5-46A8-A3D7-726C3FB264C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{270BDC38-4745-4EA6-A247-A42D8B267812}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{270BDC38-4745-4EA6-A247-A42D8B267812}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{270BDC38-4745-4EA6-A247-A42D8B267812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A84B693C-29B5-46A8-A3D7-726C3FB264C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A84B693C-29B5-46A8-A3D7-726C3FB264C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A84B693C-29B5-46A8-A3D7-726C3FB264C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A84B693C-29B5-46A8-A3D7-726C3FB264C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
